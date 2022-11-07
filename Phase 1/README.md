@@ -667,6 +667,7 @@ Create a new ASP.NET 6 Web Application inside **01 Apis*** <br/>![](Assets/2020-
 
 **Nuget Packages Required**
 - [ ] Swashbuckle.AspNetCore [Read More](https://code-maze.com/swagger-ui-asp-net-core-web-api/)
+- [ ] Microsoft.EntityFrameworkCore.SqlServer
 
 ### **Configuration**
 
@@ -700,7 +701,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ``` 
 
-Inside of Startup.cs add DependencyInjection.cs inside of ConfigureService.
+Inside of Startup.cs add DependencyInjection inside of ConfigureServices.
 
 ```cs
 DependencyInjection.AddApplication(services);
@@ -797,7 +798,7 @@ namespace Pezza.Api.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<Stock>> Create([FromBody] Stock model)
+        public async Task<ActionResult<Stock>> Create([FromBody] StockDTO model)
         {
             var result = await this.StockCore.SaveAsync(model);
             if (result == null)
